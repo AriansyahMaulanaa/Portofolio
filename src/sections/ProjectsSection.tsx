@@ -165,7 +165,7 @@ export function ProjectsSection() {
             title="Smart Plant Watering System"
             description="An IoT-based smart irrigation system that enables users to control plant watering remotely through a smartphone. Designed to improve watering efficiency and support future sensor-based automation."
             techStack={['ESP32', 'IOT', 'MOBILE CONTROL']}
-            galaxy={galaxies[4]}
+            galaxy={galaxies[3]}
           />
 
           <ProjectCard
@@ -173,7 +173,7 @@ export function ProjectsSection() {
             title="Retail Customer Segmentation"
             description="A data mining project that performs customer segmentation using clustering algorithms to identify purchasing behavior and support data-driven business decisions."
             techStack={['RAPIDMINER', 'DATA MINING']}
-            galaxy={galaxies[5]}
+            galaxy={galaxies[4]}
             mirrored
           />
         </div>
