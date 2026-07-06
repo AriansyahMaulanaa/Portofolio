@@ -1,23 +1,18 @@
-import { MagneticText } from './MagneticText';
-
-interface SectionHeaderProps {
-  label: string;
-  title: string;
-  className?: string;
+interface Props {
+  eyebrow: string
+  title: string
 }
 
-export function SectionHeader({ label, title, className = '' }: SectionHeaderProps) {
+export function SectionHeader({ eyebrow, title }: Props) {
   return (
-    <div className={`mb-16 ${className}`}>
-      <span className="text-xs font-medium tracking-[0.08em] uppercase text-magenta block mb-4">
-        {label}
-      </span>
-      <MagneticText
-        as="h2"
-        className="font-serif text-5xl md:text-6xl font-normal leading-[1.15] tracking-[-0.02em] text-text-primary"
-      >
+    <div className="mb-12">
+      <p className="font-mono text-[10px] text-hazard-amber tracking-[0.25em] uppercase mb-3 select-none">
+        {eyebrow}
+      </p>
+      <h2 className="font-serif text-4xl md:text-5xl text-signal-white text-balance leading-tight">
         {title}
-      </MagneticText>
+      </h2>
+      <div className="mt-4 h-px w-16" style={{ background: 'rgba(255,122,41,0.4)' }} />
     </div>
-  );
+  )
 }
