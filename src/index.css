@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #05050A;
+  }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background-color: #05050A;
+    color: #E9E7DE;
+    overflow-x: hidden;
+  }
+
+  /* Cursor blink */
+  .cursor-blink::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+  }
+}
+
+@layer utilities {
+  /* Scanline overlay */
+  .scanline-overlay::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  /* HUD corner brackets */
+  .hud-corner-tl::before {
+    content: '';
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    width: 24px;
+    height: 24px;
+    border-top: 1px solid rgba(255, 122, 41, 0.5);
+    border-left: 1px solid rgba(255, 122, 41, 0.5);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .hud-corner-tr::after {
+    content: '';
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    width: 24px;
+    height: 24px;
+    border-top: 1px solid rgba(255, 122, 41, 0.5);
+    border-right: 1px solid rgba(255, 122, 41, 0.5);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* Vignette */
+  .vignette::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(5,5,10,0.7) 100%);
+    pointer-events: none;
+    z-index: 9997;
+  }
+
+  /* Section reveal animation */
+  .section-hidden {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .section-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Status dot glow animations */
+  .dot-glow-green {
+    animation: dot-glow-green 2s ease-in-out infinite;
+  }
+
+  .dot-glow-amber {
+    animation: dot-glow-amber 3s ease-in-out infinite;
+  }
+
+  /* Card hover scan effect */
+  .card-scan {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .card-scan::after {
+    content: '';
+    position: absolute;
+    inset-x: 0;
+    top: -100%;
+    height: 40%;
+    background: linear-gradient(to bottom, transparent, rgba(255,122,41,0.04), transparent);
+    transition: top 0s;
+    pointer-events: none;
+  }
+
+  .card-scan:hover::after {
+    top: 100%;
+    transition: top 0.6s ease-in-out;
+  }
+}
+
+@keyframes dot-glow-green {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(57,255,138,0.7), 0 0 6px rgba(57,255,138,0.6); }
+  50%       { opacity: 0.5; box-shadow: 0 0 0 4px rgba(57,255,138,0), 0 0 2px rgba(57,255,138,0.2); }
+}
+
+@keyframes dot-glow-amber {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px rgba(255,122,41,0.5); }
+  50%       { opacity: 0.6; box-shadow: 0 0 1px rgba(255,122,41,0.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
